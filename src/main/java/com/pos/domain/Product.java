@@ -1,7 +1,5 @@
 package com.pos.domain;
 
-import java.math.BigDecimal;
-
 public class Product {
     private int productId;
     private String productName;
