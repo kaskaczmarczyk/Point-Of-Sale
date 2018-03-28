@@ -1,7 +1,6 @@
 package com.pos.domain;
 
 import com.pos.PointOfSale;
-import org.junit.Assert;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;

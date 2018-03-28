@@ -3,6 +3,7 @@ package com.pos;
 import com.pos.devices.BarCodeScanner;
 import com.pos.devices.LcdDisplay;
 import com.pos.devices.Printer;
+import com.pos.domain.Product;
 import com.pos.domain.ProductsDataBase;
 import com.pos.domain.Receipt;
 
@@ -33,9 +34,11 @@ public class Main {
                 break;
             }
             if (matcher.matches()) {
-                System.out.println(barCodeScanner.scanBarCode(pointOfSale.getProductsDataBase().returnProductWithGivenBarCode(inputBarCode, pointOfSale), pointOfSale));
-                if (pointOfSale.getProductsDataBase().returnProductWithGivenBarCode(inputBarCode, pointOfSale) != null) {
-                    pointOfSale.getReceipt().addProduct(pointOfSale.getProductsDataBase().returnProductWithGivenBarCode(inputBarCode, pointOfSale));
+                productsDataBase = pointOfSale.getProductsDataBase();
+                Product product = productsDataBase.returnProductWithGivenBarCode(inputBarCode, pointOfSale);
+                System.out.println(barCodeScanner.scanBarCode(product, pointOfSale));
+                if (productsDataBase.checkIfProductIsNotNull(inputBarCode, pointOfSale)) {
+                    pointOfSale.getReceipt().addProduct(product);
                 }
             }
         }

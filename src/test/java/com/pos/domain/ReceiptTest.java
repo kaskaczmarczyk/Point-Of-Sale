@@ -6,17 +6,13 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ReceiptTest {
 
     private Receipt receipt;
     private final List<Product> products = new ArrayList<Product>();
-    private Double totalSum= 0.00;
 
     @Before
     public void setup() {

@@ -21,4 +21,19 @@ public class ProductsDataBase {
         }
         return returnedProduct;
     }
+
+    public boolean checkIfProductIsNotNull(String barCode, PointOfSale pointOfSale) {
+        boolean state = false;
+        for (Product product: pointOfSale.getProductsDataBase().productListFromDB) {
+            try {
+                if (product.getProductBarCode().getCode().equals(barCode)) {
+                    state = true;
+                    break;
+                }
+            } catch (NullPointerException exc) {
+                state = false;
+            }
+        }
+        return state;
+    }
 }
