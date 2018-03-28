@@ -21,6 +21,10 @@ public class Product {
         return productBarCode;
     }
 
+    public void setProductBarCode(BarCode productBarCode) {
+        this.productBarCode = productBarCode;
+    }
+
     public Double getProductPrice() {
         return productPrice;
     }

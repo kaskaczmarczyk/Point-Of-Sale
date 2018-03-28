@@ -31,6 +31,10 @@ public class PointOfSale {
         return productsDataBase;
     }
 
+    public void setProductsDataBase(ProductsDataBase productsDataBase) {
+        this.productsDataBase = productsDataBase;
+    }
+
     public Receipt getReceipt() {
         return receipt;
     }

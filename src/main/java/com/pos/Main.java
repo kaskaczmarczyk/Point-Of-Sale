@@ -23,24 +23,27 @@ public class Main {
         while (true) {
             System.out.println("Enter the bar code or press exit.");
             Scanner input = new Scanner(System.in);
-            String inputBarCode = input.nextLine();
+            String inputData = input.nextLine();
 
-            String regex = "\\d+";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(inputBarCode);
-
-            if (inputBarCode.equals("exit")) {
-                pointOfSale.getPrinter().printIfExit(receipt);
-                break;
-            }
-            if (matcher.matches()) {
+            if (isBarCode(inputData)) {
                 productsDataBase = pointOfSale.getProductsDataBase();
-                Product product = productsDataBase.returnProductWithGivenBarCode(inputBarCode, pointOfSale);
+                Product product = productsDataBase.returnProductWithGivenBarCode(inputData, pointOfSale);
                 System.out.println(barCodeScanner.scanBarCode(product, pointOfSale));
-                if (productsDataBase.checkIfProductIsNotNull(inputBarCode, pointOfSale)) {
+                if (productsDataBase.checkIfProductExist(inputData, pointOfSale)) {
                     pointOfSale.getReceipt().addProduct(product);
                 }
             }
+            else if (inputData.equals("exit")) {
+                pointOfSale.getPrinter().printIfExit(receipt);
+                break;
+            }
         }
+    }
+
+    private static boolean isBarCode(String inputData) {
+        String regex = "\\d+";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(inputData);
+        return matcher.matches();
     }
 }
