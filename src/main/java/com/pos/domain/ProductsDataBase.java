@@ -1,16 +1,11 @@
 package com.pos.domain;
 
 import com.pos.PointOfSale;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsDataBase {
     private List<Product> productListFromDB = new ArrayList<Product>();
-
-    public void addProductToDB(Product product, PointOfSale pointOfSale) {
-        pointOfSale.getProductsDataBase().productListFromDB.add(product);
-    }
 
     public Product returnProductWithGivenBarCode(String barCode, PointOfSale pointOfSale) {
         Product returnedProduct = null;
@@ -23,7 +18,6 @@ public class ProductsDataBase {
             catch (NullPointerException exc) {
                 return null;
             }
-
         }
         return returnedProduct;
     }
